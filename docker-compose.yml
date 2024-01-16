@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  app:
+    hostname: chat-service
+    restart: on-failure
+    image: chat-service
+    container_name: chat-service-container
+    build: .
+    ports:
+      - "8021:8020"
+    environment:
+      - SPRING_PROFILES_ACTIVE=local-docker
+    networks:
+      - ds-management-network
+
+networks:
+  ds-management-network:
+    external: true
